@@ -1,7 +1,7 @@
 /// Support for doing something awesome.
 ///
 /// More dartdocs go here.
-library untitled5;
+library dateUtil;
 
 export 'src/dateUtil_base.dart';
 
