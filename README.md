@@ -1,6 +1,6 @@
 # Date utility
 
-A simple api with a complete set of date helper methods.
+A simple API with a complete set of date helper methods.
 
 # features
 ## The class dateUtil contains the following method:
