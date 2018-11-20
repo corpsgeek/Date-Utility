@@ -14,53 +14,53 @@ A simple api with a complete set of date helper methods.
 - getWeek
 - leapYear
 
-### The `yearLength` method:
+ The `yearLength` method:
     The yearLength method has a single parameter of type integer and it calculates the number of days from the beginning of calendar to the entered year
 ```dart
     yearLength(int year);
 ```
 
-### The `day` method:
+ The `day` method:
         The day method has a single parameter of type integer and it returns the string equivalent of given date day
 ```dart 
         day(int length);
 ```
-### The `month` method:
+ The `month` method:
        The month method has a single parameter of type integer and it returns the string equivalent of given month number
 ```dart
         month(int monthNum);
 ```
-### The `daysInMonth` method:
+ The `daysInMonth` method:
          The daysInMonth method has two parameters of type # # # #integer and it returns the total number of days in a month
 ```dart
         daysInMonth(int monthNum, int year);
 ```
 
-### The `daysPastInYear` method:
+ The `daysPastInYear` method:
         This method has three parameters of type integer and it returns the total number of days past in a given year
 ```dart
         daysPastInYear(int monthNum, int dayNum, int year);
 ```
 
-### The `totalLengthOfDays` method:
+ The `totalLengthOfDays` method:
         This method has three parameters of type integer and it returns the total number of days past since the beginning of the calendar year 0001
 ```dart       
         totalLengthOfDays(int monthNum, int dayNum, int year);
 ```
 
-### The `printMonthCalendar` method;
+ The `printMonthCalendar` method;
         This method has two parameter of type integer and it prints the calendar of the given month in the given year.
 ```dart
         printMonthCalendar(int monthNum, int year);
 ```
 
-### The `getWeek` method:
+ The `getWeek` method:
         This method has three parameters of type integer and returns the weeks past in the year.
 ```dart
         getWeek(int monthNum, int dayNum, int year);
 ```
 
-### The `leapYear` method:
+ The `leapYear` method:
         This method has a single parameter of type integer also and returns a boolean value if the given year is a leap year
 ```dart
         leapYear(int year);
@@ -127,7 +127,7 @@ Output:
 Output:
 > The Day Wednesday, the Month is November and the year is 1975
 
-### Using the days past in a year method:
+# Using the days past in a year method:
 
 # Create a variable name to store the returned value of the day(s) past in a year method.
    ```dart
@@ -142,7 +142,7 @@ Output:
 Output:
 > Days past in the year is: 316 day(s)
 
-### Using the weeks past in a year
+# Using the weeks past in a year
 # Create a variable name to store the returned value of the week(s) past in a year method.
    ```dart
         //calculating the week past in  the entered date in the year
@@ -156,7 +156,7 @@ Output:
 Output: 
 > Week(s): 46  week(s)
 
-### Using the print month calendar:
+# Using the print month calendar:
 ```dart
         //Printing the calendar for the month in a given year
          dateUtility.printMonthCalendar(monthNumber, year);
@@ -171,7 +171,7 @@ Output:
 > 30
 
 
-### using the leap year method to check if a year is a leap year
+# using the leap year method to check if a year is a leap year
 ```dart
   //Checking if a year is a leap year
   stdout.writeln("Is $year a leap year? \n Answer: ${dateUtility.leapYear(year)}");
