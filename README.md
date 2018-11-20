@@ -4,15 +4,15 @@ A simple api with a complete set of date helper methods.
 
 ### features
 ## The class dateUtil contains the following method:
-# yearLength
-# day
-# month
-# daysInMonth
-# daysPastInYear
-# totalLengthOfDays
-# printMonthCalendar
-# getWeek
-# leapYear
+- yearLength
+- day
+- month
+- daysInMonth
+- daysPastInYear
+- totalLengthOfDays
+- printMonthCalendar
+- getWeek
+- leapYear
 
 ### The `yearLength` method:
     The yearLength method has a single parameter of type integer and it calculates the number of days from the beginning of calendar to the entered year
