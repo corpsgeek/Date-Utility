@@ -2,7 +2,7 @@
 
 A simple api with a complete set of date helper methods.
 
-### features
+# features
 ## The class dateUtil contains the following method:
 - yearLength
 - day
@@ -66,7 +66,7 @@ A simple api with a complete set of date helper methods.
         leapYear(int year);
 ```
 
-## Usage
+# Usage
 # Simply create an instance of the class dateUtil.dart in your main() block
 ```dart
     var dateUtility = new DateUtil();
