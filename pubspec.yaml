@@ -1,7 +1,7 @@
 name: date_util
-description: A complete date utility library in dart language.
-version: 0.0.1
-homepage: https://github.com/corpsgeek/Date-Utility/tree/master/dateUtil
+description: A simple API with a complete set of date helper methods.
+version: 0.0.2
+homepage: https://github.com/corpsgeek/Date-Utility
 author: Adetu Ridwan, Egbesola Anthony <bethetechnology@gmail.com>
 
 environment:
