@@ -1,7 +1,7 @@
 name: date_util
 description: A simple API with a complete set of date helper methods  
-             not currently available in the DateTime API hence, 
-             production is made easier when working with dates.
+             not available in the DateTime API hence,production is
+             made easier when working with dates.
 version: 0.1.0
 homepage: https://github.com/corpsgeek/Date-Utility
 author: Adetu Ridwan, Egbesola Anthony <bethetechnology@gmail.com>
