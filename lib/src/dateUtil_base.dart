@@ -178,7 +178,7 @@ class DateUtil{
 
   getWeek(int monthNum, int dayNum, int year)
   {
-    int a = (daysPastInYear(monthNum, dayNum, year) / 7) + 1;
+    double a = (daysPastInYear(monthNum, dayNum, year) / 7) + 1;
     return a.toInt();
   }
 
