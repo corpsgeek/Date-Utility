@@ -2,95 +2,55 @@
 import 'dart:io';
 import 'dart:core';
 
-/**
- * A date utility interface to get every information of dates,months,weeks and year taking leap
- * year into consideration.
- */
-class DateUtil{
+/// A date utility interface to get every information of dates, months, weeks and year taking leap
+/// year into consideration.
+class DateUtil {
   var dayOfWeek = 0;
-
-
-
-  yearLength(int year)
-  {
-    int yearLength = 0;
-
-    for (int counter = 1; counter < year; counter++)
-    {
-      if (counter >= 4)
-      {
+  int yearLength(int year) {
+    var yearLength = 0;
+    for (int counter = 1; counter < year; counter++) {
+      if (counter >= 4) {
         if (leapYear(counter) == true)
           yearLength += 366;
         else
           yearLength += 365;
-      }
-      else
+      } else
         yearLength += 365;
-
-
-
     }
     return yearLength;
-
   }
 
+  String day(int length) {
+    final day = <String>['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
 
+    var count = 0;
+    String resultDay;
 
-
-  day(int length)
-  {
-    List<String> day = ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday","Thursday", "Friday"];
-
-    int count = 0;
-    String resultDay = null;
-
-
-    for (int counter = 1; counter <= length ; counter++)
-    {
-
-      bool check = ((counter > 639798) && (counter < 639811));
-      if (check == true)
-      {}
-      else
-      {
-        if (count >= 7)
-        {
-          if (count % 7 == 0)
-            count = 0;
+    for (var counter = 1; counter <= length; counter++) {
+      final check = ((counter > 639798) && (counter < 639811));
+      if (check == true) {
+      } else {
+        if (count >= 7) {
+          if (count % 7 == 0) count = 0;
         }
-
-
         resultDay = day[count];
-
         count++;
       }
     }
-
     if (count == 1)
       dayOfWeek = 7;
     else
       dayOfWeek = (count - 1);
-
-
     return resultDay;
   }
 
-
-  month(int monthNum)
-  {
-    List<String> month = ["January", "February", "March", "April", "May",
-    "June", "July", "August", "September", "October", "November",
-    "December"];
-
-
+  String month(final int monthNum) {
+    final month = <String>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
     return month[monthNum - 1];
   }
 
-
-  daysInMonth(int monthNum, int year)
-  {
-
-    List<int> monthLength = new List(12);
+  int daysInMonth(final int monthNum, final int year) {
+    List<int> monthLength = List(12);
 
     monthLength[0] = 31;
     monthLength[2] = 31;
@@ -109,94 +69,62 @@ class DateUtil{
     else
       monthLength[1] = 28;
 
-    return monthLength[monthNum -1];
+    return monthLength[monthNum - 1];
   }
 
+  int daysPastInYear(final int monthNum, final int dayNum, final int year) {
+    var totalMonthLength = 0;
 
-  daysPastInYear(int monthNum, int dayNum, int year)
-  {
-
-    int totalMonthLength = 0;
-
-    for (int count = 1; count < monthNum; count++)
-    {
+    for (var count = 1; count < monthNum; count++) {
       totalMonthLength += daysInMonth(count, year);
     }
 
-    int monthLengthTotal = totalMonthLength + dayNum;
+    var monthLengthTotal = totalMonthLength + dayNum;
 
     return monthLengthTotal;
-
   }
 
-  totalLengthOfDays(int monthNum, int dayNum, int year)
-  {
-    return (daysPastInYear(monthNum, dayNum, year) + yearLength(year));
+  totalLengthOfDays(final int monthNum, final int dayNum, final int year) => daysPastInYear(monthNum, dayNum, year) + yearLength(year);
 
-  }
-
-
-  printMonthCalendar(int monthNum, int year)
-  {
+  void printMonthCalendar(final int monthNum, final int year) {
     int dayNum = 1;
-    List<String> str_Day = ["Sun", "Mon", "Tue", "Wed","Thur", "Fri", "Sat"];
+    final str_Day = <String>['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
     day(daysPastInYear(monthNum, 1, year) + yearLength(year));
     int dayDays = 1;
 
-
-    for(int i = 0; i < 7; i++)
-    {
-      stdout.write("${str_Day[i]}\t");
+    for (int i = 0; i < 7; i++) {
+      stdout.write('${str_Day[i]}\t');
     }
     stdout.writeln();
 
-    for(int i = 1; i <= 6; i++)
-    {
-
-      for (int j = 1; j <= 7; j++)
-      {
-
-        if (dayNum >= dayOfWeek)
-        {
-          if (dayDays <= daysInMonth(monthNum,year))
-          {
-            stdout.write("${dayDays}\t");
+    for (int i = 1; i <= 6; i++) {
+      for (int j = 1; j <= 7; j++) {
+        if (dayNum >= dayOfWeek) {
+          if (dayDays <= daysInMonth(monthNum, year)) {
+            stdout.write('${dayDays}\t');
           }
           ++dayDays;
-        }
-        else if (dayNum < dayOfWeek)
-          stdout.write("\t");
+        } else if (dayNum < dayOfWeek) stdout.write('\t');
 
         dayNum++;
-
-
       }
       stdout.writeln();
     }
   }
 
-
-  getWeek(int monthNum, int dayNum, int year)
-  {
+  int getWeek(int monthNum, int dayNum, int year) {
     double a = (daysPastInYear(monthNum, dayNum, year) / 7) + 1;
     return a.toInt();
   }
 
-
-  leapYear(int year)
-  {
+  bool leapYear(int year) {
     bool leapYear = false;
 
-    bool leap =  ((year % 100 == 0) && (year % 400 != 0));
+    bool leap = ((year % 100 == 0) && (year % 400 != 0));
     if (leap == true)
       leapYear = false;
-    else if (year % 4 == 0)
-      leapYear = true;
-
+    else if (year % 4 == 0) leapYear = true;
 
     return leapYear;
   }
-
-
-
 }
