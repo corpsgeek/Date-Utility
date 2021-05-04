@@ -1,5 +1,5 @@
 import 'dart:io';
-import 'package:date_util/src/dateUtil_base.dart';
+import 'package:date_util/date_util.dart';
 
 main() {
   final dateUtility = DateUtil();
@@ -16,33 +16,36 @@ main() {
   stdout.writeln('Enter year ');
   int year = int.parse(stdin.readLineSync());
 
-  // Store the total number of days past since the beginning of the calendar year 0001
-  int length = dateUtility.totalLengthOfDays(monthNumber, dayNumber, year);
+  DateTime time = DateTime(year, monthNumber, dayNumber);
 
-  // Store the string equivalent of entered date day
+  // store the total number of days past since the beginning of the calendar year 0001
+  int length = DateUtil.totalLengthOfDays(time);
+
+  // store the string equivalent of entered date day
   String resultDay = dateUtility.day(length);
 
-  // Store the string equivalent of entered month number
+  // store the string equivalent of entered month number
   String monthName = dateUtility.month(monthNumber);
 
   // Printing the details
-  stdout.writeln('The Day $resultDay, the Month is $monthName and the year is $year');
+  stdout.writeln(
+      'The Day $resultDay, the Month is $monthName and the year is $year');
 
-  // Calculating total number of days past in a given year
-  int daysPast = dateUtility.daysPastInYear(monthNumber, dayNumber, year);
+  // calculating total number of days past in a given year
+  int daysPast = DateUtil.daysPastInYear(time);
 
   // Printing the result for days past in a given year
   stdout.writeln('Days past in the year is: $daysPast day(s)');
 
-  // Calculating the weeks past in the entered date in the year
-  int weeks = dateUtility.getWeek(monthNumber, dayNumber, year);
+  // calculating the weeks past in the entered date in the year
+  int weeks = DateUtil.getWeek(time);
 
   // Printing the number of weeks past in a given year
   stdout.writeln('Week(s): $weeks  week(s)');
 
   // Printing the calendar for the month in a given year
-  dateUtility.printMonthCalendar(monthNumber, year);
+  dateUtility.printMonthCalendar(time);
 
   // Checking if a year is a leap year
-  stdout.writeln('Is $year a leap year? \nAnswer: ${dateUtility.leapYear(year)}');
+  stdout.writeln('Is $year a leap year? \nAnswer: ${DateUtil.leapYear(time)}');
 }
