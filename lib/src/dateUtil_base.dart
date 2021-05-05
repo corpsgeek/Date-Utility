@@ -7,7 +7,7 @@ import 'dart:core';
 class DateUtil {
   var dayOfWeek = 0;
 
-  // Return the number of day passed since [time] DateTime variable
+  // Returns the number of day passed since [time] DateTime variable
   static int yearLength(DateTime time) {
     var yearLength = 0;
     for (int counter = 1; counter < time.year; counter++) {
@@ -22,6 +22,7 @@ class DateUtil {
     return yearLength;
   }
 
+  // Returns the string equivalent of entered date day
   String day(int length) {
     final day = <String>[
       'Saturday',
@@ -54,6 +55,7 @@ class DateUtil {
     return resultDay;
   }
 
+  // Returns the string equivalent of entered month number
   String month(final int monthNum) {
     final month = <String>[
       'January',
@@ -72,6 +74,7 @@ class DateUtil {
     return month[monthNum - 1];
   }
 
+  // Return the number of days contained in a month
   static int daysInMonth(DateTime time) {
     List<int> monthLength = List(12);
 
@@ -95,6 +98,7 @@ class DateUtil {
     return monthLength[time.month - 1];
   }
 
+  // Returns total number of days past in a given year
   static int daysPastInYear(DateTime time) {
     var totalMonthLength = 0;
 
@@ -107,9 +111,11 @@ class DateUtil {
     return monthLengthTotal;
   }
 
+  //returns the total number of days past since the beginning of the calendar year 0001
   static totalLengthOfDays(DateTime time) =>
       daysPastInYear(time) + yearLength(time);
 
+  //  It prints the calendar of the given month in the given year.
   void printMonthCalendar(DateTime time) {
     int dayNum = 1;
     final str_Day = <String>['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
@@ -137,11 +143,13 @@ class DateUtil {
     }
   }
 
+  // Returns the weeks past in the entered date in the year
   static int getWeek(DateTime time) {
     double a = (daysPastInYear(time) / 7) + 1;
     return a.toInt();
   }
 
+  // Checks if the year is leap
   static bool leapYear(DateTime time) {
     bool leapYear = false;
 
