@@ -6,11 +6,13 @@ import 'dart:core';
 /// year into consideration.
 class DateUtil {
   var dayOfWeek = 0;
-  int yearLength(int year) {
+
+  // Returns the number of day passed since [time] DateTime variable
+  static int yearLength(DateTime time) {
     var yearLength = 0;
-    for (int counter = 1; counter < year; counter++) {
+    for (int counter = 1; counter < time.year; counter++) {
       if (counter >= 4) {
-        if (leapYear(counter) == true)
+        if (leapYear(new DateTime(counter)))
           yearLength += 366;
         else
           yearLength += 365;
@@ -20,8 +22,17 @@ class DateUtil {
     return yearLength;
   }
 
+  // Returns the string equivalent of entered date day
   String day(int length) {
-    final day = <String>['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+    final day = <String>[
+      'Saturday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday'
+    ];
 
     var count = 0;
     String resultDay;
@@ -44,12 +55,27 @@ class DateUtil {
     return resultDay;
   }
 
+  // Returns the string equivalent of entered month number
   String month(final int monthNum) {
-    final month = <String>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    final month = <String>[
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
     return month[monthNum - 1];
   }
 
-  int daysInMonth(final int monthNum, final int year) {
+  // Return the number of days contained in a month
+  static int daysInMonth(DateTime time) {
     List<int> monthLength = List(12);
 
     monthLength[0] = 31;
@@ -64,32 +90,37 @@ class DateUtil {
     monthLength[5] = 30;
     monthLength[10] = 30;
 
-    if (leapYear(year) == true)
+    if (leapYear(time) == true)
       monthLength[1] = 29;
     else
       monthLength[1] = 28;
 
-    return monthLength[monthNum - 1];
+    return monthLength[time.month - 1];
   }
 
-  int daysPastInYear(final int monthNum, final int dayNum, final int year) {
+  // Returns total number of days past in a given year
+  static int daysPastInYear(DateTime time) {
     var totalMonthLength = 0;
 
-    for (var count = 1; count < monthNum; count++) {
-      totalMonthLength += daysInMonth(count, year);
+    for (var count = 1; count < time.month; count++) {
+      totalMonthLength += daysInMonth(new DateTime(time.year, count));
     }
 
-    var monthLengthTotal = totalMonthLength + dayNum;
+    var monthLengthTotal = totalMonthLength + time.day;
 
     return monthLengthTotal;
   }
 
-  totalLengthOfDays(final int monthNum, final int dayNum, final int year) => daysPastInYear(monthNum, dayNum, year) + yearLength(year);
+  //returns the total number of days past since the beginning of the calendar year 0001
+  static totalLengthOfDays(DateTime time) =>
+      daysPastInYear(time) + yearLength(time);
 
-  void printMonthCalendar(final int monthNum, final int year) {
+  //  It prints the calendar of the given month in the given year.
+  void printMonthCalendar(DateTime time) {
     int dayNum = 1;
     final str_Day = <String>['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-    day(daysPastInYear(monthNum, 1, year) + yearLength(year));
+    day(daysPastInYear(new DateTime(time.year, time.month, 1)) +
+        yearLength(time));
     int dayDays = 1;
 
     for (int i = 0; i < 7; i++) {
@@ -100,7 +131,7 @@ class DateUtil {
     for (int i = 1; i <= 6; i++) {
       for (int j = 1; j <= 7; j++) {
         if (dayNum >= dayOfWeek) {
-          if (dayDays <= daysInMonth(monthNum, year)) {
+          if (dayDays <= daysInMonth(time)) {
             stdout.write('${dayDays}\t');
           }
           ++dayDays;
@@ -112,18 +143,20 @@ class DateUtil {
     }
   }
 
-  int getWeek(int monthNum, int dayNum, int year) {
-    double a = (daysPastInYear(monthNum, dayNum, year) / 7) + 1;
+  // Returns the weeks past in the entered date in the year
+  static int getWeek(DateTime time) {
+    double a = (daysPastInYear(time) / 7) + 1;
     return a.toInt();
   }
 
-  bool leapYear(int year) {
+  // Checks if the year is leap
+  static bool leapYear(DateTime time) {
     bool leapYear = false;
 
-    bool leap = ((year % 100 == 0) && (year % 400 != 0));
+    bool leap = ((time.year % 100 == 0) && (time.year % 400 != 0));
     if (leap == true)
       leapYear = false;
-    else if (year % 4 == 0) leapYear = true;
+    else if (time.year % 4 == 0) leapYear = true;
 
     return leapYear;
   }
