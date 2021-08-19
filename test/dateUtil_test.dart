@@ -6,21 +6,21 @@ main() {
 
   // Prompting for user input of the month number
   stdout.writeln('Enter month number');
-  int monthNumber = int.parse(stdin.readLineSync());
+  int monthNumber = int.parse(stdin.readLineSync()!);
 
   // Prompting for user input of the  day  number
   stdout.writeln('Enter day number');
-  int dayNumber = int.parse(stdin.readLineSync());
+  int dayNumber = int.parse(stdin.readLineSync()!);
 
   // Prompting for user input of the year
   stdout.writeln('Enter year ');
-  int year = int.parse(stdin.readLineSync());
+  int year = int.parse(stdin.readLineSync()!);
 
   // store the total number of days past since the beginning of the calendar year 0001
   int length = dateUtility.totalLengthOfDays(monthNumber, dayNumber, year);
 
   // store the string equivalent of entered date day
-  String resultDay = dateUtility.day(length);
+  String? resultDay = dateUtility.day(length);
 
   // store the string equivalent of entered month number
   String monthName = dateUtility.month(monthNumber);
