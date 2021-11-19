@@ -71,7 +71,10 @@ class DateUtil {
   }
 
   int? daysInMonth(final int monthNum, final int year) {
-    List<int?> monthLength = [];
+    if (monthNum > 12) {
+      return null;
+    }
+    List<int> monthLength = List.filled(12, 0);
     monthLength[0] = 31;
     monthLength[2] = 31;
     monthLength[4] = 31;
