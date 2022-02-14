@@ -1,32 +1,33 @@
 import 'dart:io';
-import 'package:date_util/src/dateUtil_base.dart';
+import 'package:date_util/src/date_util_base.dart';
 
 main() {
   final dateUtility = DateUtil();
 
   // Prompting for user input of the month number
   stdout.writeln('Enter month number');
-  int monthNumber = int.parse(stdin.readLineSync());
+  int monthNumber = int.parse(stdin.readLineSync()!);
 
   // Prompting for user input of the  day  number
   stdout.writeln('Enter day number');
-  int dayNumber = int.parse(stdin.readLineSync());
+  int dayNumber = int.parse(stdin.readLineSync()!);
 
   // Prompting for user input of the year
   stdout.writeln('Enter year ');
-  int year = int.parse(stdin.readLineSync());
+  int year = int.parse(stdin.readLineSync()!);
 
   // Store the total number of days past since the beginning of the calendar year 0001
   int length = dateUtility.totalLengthOfDays(monthNumber, dayNumber, year);
 
   // Store the string equivalent of entered date day
-  String resultDay = dateUtility.day(length);
+  String? resultDay = dateUtility.day(length);
 
   // Store the string equivalent of entered month number
   String monthName = dateUtility.month(monthNumber);
 
   // Printing the details
-  stdout.writeln('The Day $resultDay, the Month is $monthName and the year is $year');
+  stdout.writeln(
+      'The Day $resultDay, the Month is $monthName and the year is $year');
 
   // Calculating total number of days past in a given year
   int daysPast = dateUtility.daysPastInYear(monthNumber, dayNumber, year);
@@ -44,5 +45,6 @@ main() {
   dateUtility.printMonthCalendar(monthNumber, year);
 
   // Checking if a year is a leap year
-  stdout.writeln('Is $year a leap year? \nAnswer: ${dateUtility.leapYear(year)}');
+  stdout
+      .writeln('Is $year a leap year? \nAnswer: ${dateUtility.leapYear(year)}');
 }

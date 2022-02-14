@@ -20,11 +20,19 @@ class DateUtil {
     return yearLength;
   }
 
-  String day(int length) {
-    final day = <String>['Saturday', 'Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday'];
+  String? day(int length) {
+    final day = <String>[
+      'Saturday',
+      'Sunday',
+      'Monday',
+      'Tuesday',
+      'Wednesday',
+      'Thursday',
+      'Friday'
+    ];
 
     var count = 0;
-    String resultDay;
+    String? resultDay;
 
     for (var counter = 1; counter <= length; counter++) {
       final check = ((counter > 639798) && (counter < 639811));
@@ -45,13 +53,28 @@ class DateUtil {
   }
 
   String month(final int monthNum) {
-    final month = <String>['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+    final month = <String>[
+      'January',
+      'February',
+      'March',
+      'April',
+      'May',
+      'June',
+      'July',
+      'August',
+      'September',
+      'October',
+      'November',
+      'December'
+    ];
     return month[monthNum - 1];
   }
 
-  int daysInMonth(final int monthNum, final int year) {
-    List<int> monthLength = List(12);
-
+  int? daysInMonth(final int monthNum, final int year) {
+    if (monthNum > 12) {
+      return null;
+    }
+    List<int> monthLength = List.filled(12, 0);
     monthLength[0] = 31;
     monthLength[2] = 31;
     monthLength[4] = 31;
@@ -74,33 +97,28 @@ class DateUtil {
 
   int daysPastInYear(final int monthNum, final int dayNum, final int year) {
     var totalMonthLength = 0;
-
     for (var count = 1; count < monthNum; count++) {
-      totalMonthLength += daysInMonth(count, year);
+      totalMonthLength += daysInMonth(count, year)!;
     }
-
-    var monthLengthTotal = totalMonthLength + dayNum;
-
-    return monthLengthTotal;
+    return totalMonthLength + dayNum;
   }
 
-  totalLengthOfDays(final int monthNum, final int dayNum, final int year) => daysPastInYear(monthNum, dayNum, year) + yearLength(year);
+  int totalLengthOfDays(final int monthNum, final int dayNum, final int year) =>
+      daysPastInYear(monthNum, dayNum, year) + yearLength(year);
 
   void printMonthCalendar(final int monthNum, final int year) {
     int dayNum = 1;
     final str_Day = <String>['Sun', 'Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat'];
-    day(daysPastInYear(monthNum, 1, year) + yearLength(year));
     int dayDays = 1;
 
     for (int i = 0; i < 7; i++) {
       stdout.write('${str_Day[i]}\t');
     }
     stdout.writeln();
-
     for (int i = 1; i <= 6; i++) {
       for (int j = 1; j <= 7; j++) {
         if (dayNum >= dayOfWeek) {
-          if (dayDays <= daysInMonth(monthNum, year)) {
+          if (dayDays <= daysInMonth(monthNum, year)!) {
             stdout.write('${dayDays}\t');
           }
           ++dayDays;
@@ -119,7 +137,6 @@ class DateUtil {
 
   bool leapYear(int year) {
     bool leapYear = false;
-
     bool leap = ((year % 100 == 0) && (year % 400 != 0));
     if (leap == true)
       leapYear = false;

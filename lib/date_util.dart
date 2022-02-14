@@ -3,4 +3,4 @@
 /// made easier when working with dates.
 library dateUtil;
 
-export 'src/dateUtil_base.dart';
+export 'src/date_util_base.dart';
